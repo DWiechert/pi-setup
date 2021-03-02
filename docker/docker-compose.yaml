@@ -1,0 +1,32 @@
+version: "3.9"
+
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo bash get-docker.sh
+# sudo usermod -aG docker $(whoami)
+# docker version
+# sudo pip3 install docker-compose
+# docker-compose version
+
+services:
+  # https://fleet.linuxserver.io/image?name=linuxserver/syncthing
+  # https://hub.docker.com/r/linuxserver/syncthing
+  syncthing:
+    image: linuxserver/syncthing:latest
+    restart: unless-stopped
+    volumes:
+      - /home/pi/Documents/Docker/Syncthing/config:/config
+      - /home/pi/Documents/SyncExperiemtn:/SyncExperiemtn
+      - /home/pi/Documents/Movies:/Movies
+    ports:
+      - 8384:8384
+      - 22000:22000
+      - 21027:21027/udp
+  # https://fleet.linuxserver.io/image?name=linuxserver/plex
+  # https://hub.docker.com/r/linuxserver/plex
+  plex:
+    image: linuxserver/plex:bionic
+    restart: unless-stopped
+    volumes:
+      - /home/pi/Documents/Docker/Plex/config:/config
+      - /home/pi/Documents/Movies:/movies
+    network_mode: host
