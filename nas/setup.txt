@@ -1,8 +1,15 @@
- https://www.youtube.com/watch?v=U2w5PgJ4uhE
- https://wiki.learnlinux.tv/index.php/Building_a_Raspberry-Pi_Storage_Server_with_OpenMediaVault
+https://www.youtube.com/watch?v=U2w5PgJ4uhE
+https://wiki.learnlinux.tv/index.php/Building_a_Raspberry-Pi_Storage_Server_with_OpenMediaVault
  
- wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install |sudo bash
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install |sudo bash
  
- ssh pi@pi-nas
+ssh pi@<ip address>
+sudo vi /etc/hostname
+<change to pi-nas>
+sudo vi /etc/hosts
+<change last part to pi-nas>
+sudo reboot
+ 
+ssh pi@pi-nas
 
 http://pi-nas/
