@@ -4,3 +4,5 @@
  wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install |sudo bash
  
  ssh pi@pi-nas
+
+http://pi-nas/
