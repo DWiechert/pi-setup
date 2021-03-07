@@ -13,3 +13,6 @@ sudo reboot
 ssh pi@pi-nas
 
 http://pi-nas/
+
+Permissions issues when copying were resolved with:
+https://www.youtube.com/watch?v=QVm92VqCaGA
