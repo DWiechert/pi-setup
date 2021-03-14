@@ -1,32 +1,95 @@
 version: "3.9"
 
-# curl -fsSL https://get.docker.com -o get-docker.sh
-# sudo bash get-docker.sh
-# sudo usermod -aG docker $(whoami)
-# docker version
-# sudo pip3 install docker-compose
-# docker-compose version
-
-services:
-  # https://fleet.linuxserver.io/image?name=linuxserver/syncthing
-  # https://hub.docker.com/r/linuxserver/syncthing
-  syncthing:
-    image: linuxserver/syncthing:latest
+services:  
+  # https://fleet.linuxserver.io/image?name=linuxserver/heimdall
+  # https://hub.docker.com/r/linuxserver/heimdall
+  # Available at http://pi-nas:8080
+  heimdall:
+    image: ghcr.io/linuxserver/heimdall:latest
+    container_name: heimdall
     restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
     volumes:
-      - /home/pi/Documents/Docker/Syncthing/config:/config
-      - /home/pi/Documents/SyncExperiemtn:/SyncExperiemtn
-      - /home/pi/Documents/Movies:/Movies
+      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/heimdall/config:/config
     ports:
-      - 8384:8384
-      - 22000:22000
-      - 21027:21027/udp
+      - 8080:80
+      - 4443:443
+
+  portainer:
+    image: portainer/portainer:latest
+    container_name: portainer
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/portainer/config:/data
+
   # https://fleet.linuxserver.io/image?name=linuxserver/plex
   # https://hub.docker.com/r/linuxserver/plex
+  # Available at http://pi-nas:32400/web/index.html
   plex:
-    image: linuxserver/plex:bionic
+    image: linuxserver/plex:latest
+    container_name: plex
     restart: unless-stopped
-    volumes:
-      - /home/pi/Documents/Docker/Plex/config:/config
-      - /home/pi/Documents/Movies:/movies
     network_mode: host
+    volumes:
+      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/plex/config:/config
+      #- "/srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/storage2tb/Music:/music"
+      - "/srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/storage2tb/Movies:/movies"
+      - "/srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/storage2tb/TV Shows:/tv_shows"
+      - "/srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/storage2tb/Workouts:/workouts"
+
+  # https://fleet.linuxserver.io/image?name=linuxserver/grocy
+  # https://hub.docker.com/r/linuxserver/grocy
+  # Available at http://pi-nas:9283
+  grocy:
+    image: ghcr.io/linuxserver/grocy:latest
+    container_name: grocy
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/grocy/config:/config
+    ports:
+      - 9283:80
+
+# https://fleet.linuxserver.io/image?name=linuxserver/bookstack
+# https://hub.docker.com/r/linuxserver/bookstack
+
+
+  # https://fleet.linuxserver.io/image?name=linuxserver/syncthing
+  # https://hub.docker.com/r/linuxserver/syncthing
+#  syncthing:
+#    image: linuxserver/syncthing:latest
+#    restart: unless-stopped
+#    volumes:
+#      - /home/pi/Documents/Docker/Syncthing/config:/config
+#      - /home/pi/Documents/SyncExperiemtn:/SyncExperiemtn
+#      - /home/pi/Documents/Movies:/Movies
+#    ports:
+#      - 8384:8384
+#      - 22000:22000
+#      - 21027:21027/udp
+
+
+# https://docs.linuxserver.io/images/docker-mstream
+
+
+
+# https://docs.linuxserver.io/images/docker-papermerge
+
+
+
+# https://docs.linuxserver.io/images/docker-photoshow
+
+
+
+# https://docs.linuxserver.io/images/docker-nextcloud
