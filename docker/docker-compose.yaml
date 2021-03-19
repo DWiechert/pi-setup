@@ -1,7 +1,11 @@
 version: "3.9"
 
 # cd /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker
+# Get the latest version of each image
+# docker-compose pull
+# Start all services (will restart services in which there is a newer image)
 # docker-compose up -d
+# Stop all services
 # docker-compose down
 
 services:  
