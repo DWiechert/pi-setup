@@ -1,5 +1,9 @@
 version: "3.9"
 
+# cd /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker
+# docker-compose up -d
+# docker-compose down
+
 services:  
   # https://fleet.linuxserver.io/image?name=linuxserver/heimdall
   # https://hub.docker.com/r/linuxserver/heimdall
