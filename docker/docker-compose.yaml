@@ -78,7 +78,7 @@ services:
   # Add the line "BINARY_STAPLER = "/usr/local/bin/stapler""
   # Restart everything
   # https://github.com/linuxserver/docker-papermerge/issues/27
-  # https://github.com/linuxserver/docker-papermerge/issues/33
+#   https://github.com/linuxserver/docker-papermerge/issues/33
 #  papermerge:
 #    image: ghcr.io/linuxserver/papermerge:latest
 #    container_name: papermerge
