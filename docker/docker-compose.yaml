@@ -79,19 +79,19 @@ services:
   # Restart everything
   # https://github.com/linuxserver/docker-papermerge/issues/27
   # https://github.com/linuxserver/docker-papermerge/issues/33
-  papermerge:
-    image: ghcr.io/linuxserver/papermerge:latest
-    container_name: papermerge
-    restart: unless-stopped
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Chicago
-    volumes:
-      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/papermerge/config:/config
-      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/papermerge/data:/data
-    ports:
-      - 10000:8000
+#  papermerge:
+#    image: ghcr.io/linuxserver/papermerge:latest
+#    container_name: papermerge
+#    restart: unless-stopped
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=America/Chicago
+#    volumes:
+#      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/papermerge/config:/config
+#      - /srv/dev-disk-by-uuid-5d345ba7-5cd8-46f5-a1a5-8835ab885c5d/docker/papermerge/data:/data
+#    ports:
+#      - 10000:8000
 
 # https://fleet.linuxserver.io/image?name=linuxserver/bookstack
 # https://hub.docker.com/r/linuxserver/bookstack
